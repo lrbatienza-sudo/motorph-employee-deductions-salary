@@ -1,4 +1,4 @@
-# Motorph-Payroll-GROUP14CP2
+# MotorPH-Payroll-README
  * Employee class - represents an employee in the MotorPH Payroll System.
  * Holds basic identity info and is the central entity that attendance and
  * payroll records belong to.
