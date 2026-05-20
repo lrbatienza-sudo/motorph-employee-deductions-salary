@@ -1,6 +1,4 @@
-# Motorph-employee-salary-deductions-GROUP14CP2
-import java.util.ArrayList;
-import java.util.List;
+# Motorph-Payroll-GROUP14CP2
 
 /**
  * Employee class - represents an employee in the MotorPH Payroll System.
