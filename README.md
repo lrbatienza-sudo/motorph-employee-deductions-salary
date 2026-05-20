@@ -78,3 +78,77 @@ public class Employee {
         return "Employee{id=" + employeeID + ", name='" + name + "', position='" + position + "'}";
     }
 }
+/**
+ * Attendance class - records when an employee clocks in and out for the day.
+ * Multiple Attendance records can be tied to a single Employee.
+ */
+public class Attendance {
+    // Attributes
+    private int attendanceID;
+    private String timeIn;
+    private String timeOut;
+    private int employeeID; // links the record back to the Employee
+
+    // Constructor
+    public Attendance(int attendanceID, int employeeID) {
+        this.attendanceID = attendanceID;
+        this.employeeID = employeeID;
+        this.timeIn = null;
+        this.timeOut = null;
+    }
+
+    // ----- Methods from the class diagram -----
+
+    /**
+     * Records the clock-in time as an HH:mm string.
+     */
+    public void recordTimeIn(String time) {
+        this.timeIn = time;
+        System.out.println("[Attendance] Employee " + employeeID + " timed IN at " + time);
+    }
+
+    /**
+     * Records the clock-out time as an HH:mm string.
+     */
+    public void recordTimeOut(String time) {
+        this.timeOut = time;
+        System.out.println("[Attendance] Employee " + employeeID + " timed OUT at " + time);
+    }
+
+    /**
+     * Calculates the number of hours worked between timeIn and timeOut.
+     * Expects HH:mm 24-hour format. Returns 0 if either value is missing.
+     */
+    public double hoursWorked() {
+        if (timeIn == null || timeOut == null) return 0.0;
+        int in = toMinutes(timeIn);
+        int out = toMinutes(timeOut);
+        if (out < in) return 0.0;
+        return (out - in) / 60.0;
+    }
+
+    private int toMinutes(String hhmm) {
+        String[] parts = hhmm.split(":");
+        return Integer.parseInt(parts[0]) * 60 + Integer.parseInt(parts[1]);
+    }
+
+    // ----- Getters and setters -----
+
+    public int getAttendanceID() { return attendanceID; }
+    public void setAttendanceID(int attendanceID) { this.attendanceID = attendanceID; }
+
+    public String getTimeIn() { return timeIn; }
+    public void setTimeIn(String timeIn) { this.timeIn = timeIn; }
+
+    public String getTimeOut() { return timeOut; }
+    public void setTimeOut(String timeOut) { this.timeOut = timeOut; }
+
+    public int getEmployeeID() { return employeeID; }
+    public void setEmployeeID(int employeeID) { this.employeeID = employeeID; }
+
+    @Override
+    public String toString() {
+        return "Attendance{id=" + attendanceID + ", employeeID=" + employeeID
+                + ", timeIn=" + timeIn + ", timeOut=" + timeOut + "}";
+    }
+}
